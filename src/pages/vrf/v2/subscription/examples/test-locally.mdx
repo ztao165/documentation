@@ -24,6 +24,30 @@ Testing locally using mock contracts saves you time and resources during develop
 1. Easier debugging: Because local tests run on your machine, you have better control over the debugging process. You can set breakpoints, inspect variables, and step through your code to identify and fix issues.
 1. Comprehensive test coverage: You can create test cases to cover all possible scenarios and edge cases.
 
+## Testing logic
+
+Complete the following tasks to test your VRF v2 consumer locally:
+
+1. Deploy the [VRFCoordinatorV2Mock](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol). This contract is a mock of the [VRFCoordinatorV2](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/VRFCoordinatorV2.sol) contract.
+1. Call the VRFCoordinatorV2Mock [createSubscription function](https://github.com/smartcontractkit/chainlink/blob/abf1d19c147c4fd54173b48140706780b53be474/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol#L176) to create a new subscription.
+1. Call the VRFCoordinatorV2Mock [fundSubscription function](https://github.com/smartcontractkit/chainlink/blob/abf1d19c147c4fd54173b48140706780b53be474/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol#L138) to fund your newly created subscription. **Note**: You can fund with an arbitrary amount.
+1. Deploy your VRF consumer contract.
+1. Call the the VRFCoordinatorV2Mock [addConsumer function](https://github.com/smartcontractkit/chainlink/blob/abf1d19c147c4fd54173b48140706780b53be474/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol#L229) to add link your consumer contract to your subscription.
+1. Request random words from your consumer contract.
+1. Call the VRFCoordinatorV2Mock [fulfilRandomWords function](https://github.com/smartcontractkit/chainlink/blob/abf1d19c147c4fd54173b48140706780b53be474/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol#L88) to fulfill your consumer contract request.
+
+## Testing
+
+### Open your contracts on RemixIDE
+
+Open _VRFCoordinatorV2Mock_ and compile in Remix:
+
 <CodeSample src="samples/VRF/mock/VRFCoordinatorV2Mock.sol" />
 
+Open _VRFv2Consumer_ and compile in Remix:
+
 <CodeSample src="samples/VRF/mock/VRFv2Consumer.sol" />
+
+Your
+
+### Deploy VRFCoordinatorV2Mock
